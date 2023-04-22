@@ -35,9 +35,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <a href="index.html" class="logo">
         ADMIN
     </a>
-    <div class="sidebar-toggle-box">
+    {{-- <div class="sidebar-toggle-box">
         <div class="fa fa-bars"></div>
-    </div>
+    </div> --}}
 </div>
 <!--logo end-->
 
@@ -101,18 +101,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-book"></i>
-                        <span>Danh mục sản phẩm</span>
-                    </a>
-                    <ul class="sub">
-						<li><a href="{{URL::to('/add-category-product')}}">Thêm danh mục sản phẩm</a></li>
-						<li><a href="{{URL::to('/all-category-product')}}">Liệt kê danh mục sản phẩm</a></li>
-                      
-                    </ul>
-                </li>
-                 <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-book"></i>
+                        <i class="fa fa-trademark"></i>
                         <span>Thương hiệu sản phẩm</span>
                     </a>
                     <ul class="sub">
@@ -121,9 +110,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                       
                     </ul>
                 </li>
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-list-alt"></i>
+                        <span>Danh mục sản phẩm</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="{{URL::to('/add-category-product')}}">Thêm danh mục sản phẩm</a></li>
+						<li><a href="{{URL::to('/all-category-product')}}">Liệt kê danh mục sản phẩm</a></li>
+                      
+                    </ul>
+                </li>   
                   <li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-book"></i>
+                        <i class="fa fa-product-hunt"></i>
                         <span>Sản phẩm</span>
                     </a>
                     <ul class="sub">
