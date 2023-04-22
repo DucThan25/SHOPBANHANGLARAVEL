@@ -281,6 +281,7 @@
         </div>
         <hr>
         <hr>
+        <hr>
     </section>
     
     <footer id="footer"><!--Footer-->
