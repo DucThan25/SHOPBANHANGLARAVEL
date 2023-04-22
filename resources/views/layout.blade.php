@@ -282,6 +282,7 @@
         <hr>
         <hr>
         <hr>
+        <hr>
     </section>
     
     <footer id="footer"><!--Footer-->
