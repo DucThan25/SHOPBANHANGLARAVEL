@@ -31,7 +31,7 @@
 				Session::put('message',null);
 			}
 			?>
-				<form action="{{URL::to('/admin-dashboard')}}" method="post">
+				<form action="{{ route('admin.admin-dashboard')}}" method="post">
 					{{ csrf_field() }}
 					<input type="text"  class="ggg" name="admin_email" placeholder="Điền email" required="">
 					<input type="password" class="ggg" name="admin_password" placeholder="Điền password" required="">

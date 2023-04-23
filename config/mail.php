@@ -49,7 +49,7 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 587),
+    'port' => env('MAIL_PORT', 465),
 
     /*
     |--------------------------------------------------------------------------
@@ -63,8 +63,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'nguyenducthan2507@gmail.com'),
-        'name' => env('MAIL_FROM_NAME', 'Ducthan'),
+        'address' => env('MAIL_FROM_ADDRESS', 'xuanthuyloi@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'Xuannguyen'),
     ],
 
     /*
@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'encryption' => env('MAIL_ENCRYPTION', 'tsl'),
+    'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
 
     /*
     |--------------------------------------------------------------------------
