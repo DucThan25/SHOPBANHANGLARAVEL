@@ -16,8 +16,8 @@
                         <div class="panel-body">
 
                             <div class="position-center">
-                                <form role="form" action="{{URL::to('/save-brand-product')}}" method="post">
-                                    {{ csrf_field() }}
+                                <form role="form" action="{{URL::to('admin/brand/save')}}" method="post">
+                                    @csrf
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên thương hiệu</label>
                                     <input type="text" name="brand_product_name" class="form-control" id="exampleInputEmail1" placeholder="Tên danh mục">

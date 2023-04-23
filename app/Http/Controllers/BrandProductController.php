@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 session_start();
-class BrandProduct extends Controller
+class BrandProductController extends Controller
 {
     public function AuthLogin(){
         $admin_id = Session::get('admin_id');
@@ -18,11 +17,11 @@ class BrandProduct extends Controller
             return Redirect::to('admin')->send();
         }
     }
-    public function add_brand_product(){
+    public function add(){
         $this->AuthLogin();
     	return view('admin.add_brand_product');
     }
-    public function all_brand_product(){
+    public function index(){
         $this->AuthLogin();
     	$all_brand_product = DB::table('tbl_brand')->get();
     	$manager_brand_product  = view('admin.all_brand_product')->with('all_brand_product',$all_brand_product);
@@ -30,7 +29,7 @@ class BrandProduct extends Controller
 
 
     }
-    public function save_brand_product(Request $request){
+    public function save(Request $request){
         $this->AuthLogin();
     	$data = array();
     	$data['brand_name'] = $request->brand_product_name;
@@ -40,23 +39,23 @@ class BrandProduct extends Controller
 
     	DB::table('tbl_brand')->insert($data);
     	Session::put('message','Thêm thương hiệu sản phẩm thành công');
-    	return Redirect::to('add-brand-product');
+    	return redirect()->route('admin.brand.add');
     }
-    public function unactive_brand_product($brand_product_id){
+    public function unactive($brand_product_id){
         $this->AuthLogin();
         DB::table('tbl_brand')->where('brand_id',$brand_product_id)->update(['brand_status'=>1]);
         Session::put('message','Không kích hoạt thương hiệu sản phẩm thành công');
-        return Redirect::to('all-brand-product');
+        return redirect()->route('admin.brand.index');
 
     }
-    public function active_brand_product($brand_product_id){
+    public function active($brand_product_id){
         $this->AuthLogin();
         DB::table('tbl_brand')->where('brand_id',$brand_product_id)->update(['brand_status'=>0]);
         Session::put('message','Kích hoạt thương hiệu sản phẩm thành công');
-        return Redirect::to('all-brand-product');
+        return redirect()->route('admin.brand.index');
 
     }
-    public function edit_brand_product($brand_product_id){
+    public function edit($brand_product_id){
         $this->AuthLogin();
         $edit_brand_product = DB::table('tbl_brand')->where('brand_id',$brand_product_id)->get();
 
@@ -64,7 +63,7 @@ class BrandProduct extends Controller
 
         return view('admin_layout')->with('admin.edit_brand_product', $manager_brand_product);
     }
-    public function update_brand_product(Request $request,$brand_product_id){
+    public function update(Request $request,$brand_product_id){
         $this->AuthLogin();
         $data = array();
         $data['brand_name'] = $request->brand_product_name;
@@ -72,13 +71,13 @@ class BrandProduct extends Controller
         $data['brand_desc'] = $request->brand_product_desc;
         DB::table('tbl_brand')->where('brand_id',$brand_product_id)->update($data);
         Session::put('message','Cập nhật thương hiệu sản phẩm thành công');
-        return Redirect::to('all-brand-product');
+        return redirect()->route('admin.brand.index');
     }
-    public function delete_brand_product($brand_product_id){
+    public function delete($brand_product_id){
         $this->AuthLogin();
         DB::table('tbl_brand')->where('brand_id',$brand_product_id)->delete();
         Session::put('message','Xóa thương hiệu sản phẩm thành công');
-        return Redirect::to('all-brand-product');
+        return redirect()->route('admin.brand.index');
     }
 
     //End Function Admin Page
