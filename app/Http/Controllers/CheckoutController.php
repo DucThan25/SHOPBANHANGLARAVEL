@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\CartController;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 
