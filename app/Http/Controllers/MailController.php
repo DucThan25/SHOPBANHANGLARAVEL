@@ -10,8 +10,8 @@ use Illuminate\Http\Request;
 class MailController extends Controller
 {
     public function send_mail(){
-        $to_name = "Ducthan";
-        $to_email = "nguyenducthan2507@gmail.com";
+        $to_name = "Xuannguyen";
+        $to_email = "xuanthuyloi@gmail.com";
 
         $data = array("name"=>"Mail từ tài khoản khách hàng","body"=>"Mail gửi về vấn đề hóa đơn");
 
