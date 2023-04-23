@@ -18,7 +18,7 @@ class ProductController extends Controller
             return Redirect::to('admin')->send();
         }
     }
-    public function add_product(){
+    public function add(){
         $this->AuthLogin();
         $cate_product = DB::table('tbl_category_product')->orderby('category_id','desc')->get(); 
         $brand_product = DB::table('tbl_brand')->orderby('brand_id','desc')->get(); 
@@ -28,7 +28,7 @@ class ProductController extends Controller
     	
 
     }
-    public function all_product(){
+    public function index(){
         $this->AuthLogin();
     	$all_product = DB::table('tbl_product')
         ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
@@ -38,7 +38,7 @@ class ProductController extends Controller
     	return view('admin_layout')->with('admin.all_product', $manager_product);
 
     }
-    public function save_product(Request $request){
+    public function save(Request $request){
          $this->AuthLogin();
     	$data = array();
     	$data['product_name'] = $request->product_name;
@@ -60,27 +60,27 @@ class ProductController extends Controller
             $data['product_image'] = $new_image;
             DB::table('tbl_product')->insert($data);
             Session::put('message','Thêm sản phẩm thành công');
-            return Redirect::to('add-product');
+            return Redirect::to('admin/product/add');
         }
         $data['product_image'] = '';
     	DB::table('tbl_product')->insert($data);
     	Session::put('message','Thêm sản phẩm thành công');
-    	return Redirect::to('all-product');
+    	return Redirect::to('admin/product/');
     }
-    public function unactive_product($product_id){
+    public function unactive($product_id){
          $this->AuthLogin();
         DB::table('tbl_product')->where('product_id',$product_id)->update(['product_status'=>1]);
         Session::put('message','Không kích hoạt sản phẩm thành công');
-        return Redirect::to('all-product');
+        return Redirect::to('admin/product/');
 
     }
-    public function active_product($product_id){
+    public function active($product_id){
          $this->AuthLogin();
         DB::table('tbl_product')->where('product_id',$product_id)->update(['product_status'=>0]);
         Session::put('message','Không kích hoạt sản phẩm thành công');
-        return Redirect::to('all-product');
+        return Redirect::to('admin/product/');
     }
-    public function edit_product($product_id){
+    public function edit($product_id){
          $this->AuthLogin();
         $cate_product = DB::table('tbl_category_product')->orderby('category_id','desc')->get(); 
         $brand_product = DB::table('tbl_brand')->orderby('brand_id','desc')->get(); 
@@ -91,7 +91,7 @@ class ProductController extends Controller
 
         return view('admin_layout')->with('admin.edit_product', $manager_product);
     }
-    public function update_product(Request $request,$product_id){
+    public function update(Request $request,$product_id){
          $this->AuthLogin();
         $data = array();
         $data['product_name'] = $request->product_name;
@@ -113,18 +113,18 @@ class ProductController extends Controller
                     $data['product_image'] = $new_image;
                     DB::table('tbl_product')->where('product_id',$product_id)->update($data);
                     Session::put('message','Cập nhật sản phẩm thành công');
-                    return Redirect::to('all-product');
+                    return Redirect::to('admin/product/');
         }
             
         DB::table('tbl_product')->where('product_id',$product_id)->update($data);
         Session::put('message','Cập nhật sản phẩm thành công');
-        return Redirect::to('all-product');
+        return Redirect::to('admin/product/');
     }
-    public function delete_product($product_id){
+    public function delete($product_id){
         $this->AuthLogin();
         DB::table('tbl_product')->where('product_id',$product_id)->delete();
         Session::put('message','Xóa sản phẩm thành công');
-        return Redirect::to('all-product');
+        return Redirect::to('admin/product/');
     }
     //End Admin Page
     public function details_product($product_slug){
