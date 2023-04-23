@@ -33,7 +33,7 @@
                     <div class="col-sm-6">
                         <div class="contactinfo">
                             <ul class="nav nav-pills">
-                                <li><a href="#"><i class="fa fa-phone"></i> +84 86 7033 918</a></li>
+                                <li><a href="#"><i class="fa fa-phone"></i> +84 86 7033 918 00000000</a></li>
                                 <li><a href="#"><i class="fa fa-envelope"></i> nguyenducthan2507@gmail.com</a></li>
                             </ul>
                         </div>
@@ -148,11 +148,18 @@
                                 <li><a href="{{URL::to('/trang-chu')}}" class="active">Trang chủ</a></li>
                                 <li class="dropdown"><a href="#">Sản phẩm<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html">Products</a></li>
-                                        <li><a href="shop.html">Products</a></li>
-                                        <li><a href="shop.html">Products</a></li>
+                                        @foreach($category as $key => $cate)
+                                            <li><a href="{{URL::to('/danh-muc-san-pham/'.$cate->slug_category_product)}}">{{$cate->category_name}}</a></li>
+                                        @endforeach
                                     </ul>
                                 </li> 
+                                {{-- <li class="dropdown"><a href="#">Thương hiệu<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        @foreach($category as $key => $cate)
+                                        <li><a href="{{URL::to('/thuong-hieu-san-pham/'.$brand->brand_slug)}}"> <span class="pull-right">(50)</span>{{$brand->brand_name}}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </li> --}}
                                 <li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a>
                                
                                 </li> 

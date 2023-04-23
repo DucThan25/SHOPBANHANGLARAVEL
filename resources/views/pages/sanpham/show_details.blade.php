@@ -5,17 +5,16 @@
 						<div class="col-sm-5">
 							<div class="view-product">
 								<img src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="" />
-								<h3>ZOOM</h3>
 							</div>
-							<div id="similar-product" class="carousel slide" data-ride="carousel">
+							{{-- <div id="similar-product" class="carousel slide" data-ride="carousel">
 								
 								  <!-- Wrapper for slides -->
 								    <div class="carousel-inner">
 
 										<div class="item active">
-										  <a href=""><img src="{{URL::to('public/frontend/images/similar1.jpg')}}" alt=""></a>
-										  <a href=""><img src="{{URL::to('public/frontend/images/similar2.jpg')}}" alt=""></a>
-										  <a href=""><img src="{{URL::to('public/frontend/images/similar3.jpg')}}" alt=""></a>
+										  <a href=""><img src="{{URL::to('frontend/images/girl1.jpg')}}" alt=""></a>
+										  <a href=""><img src="{{URL::to('frontend/images/girl2.jpg')}}" alt=""></a>
+										  <a href=""><img src="{{URL::to('frontend/images/girl3.jpg')}}" alt=""></a>
 										</div>
 										
 										
@@ -29,7 +28,7 @@
 								  <a class="right item-control" href="#similar-product" data-slide="next">
 									<i class="fa fa-angle-right"></i>
 								  </a>
-							</div>
+							</div> --}}
 
 						</div>
 						<div class="col-sm-7">
