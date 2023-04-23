@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,3 +96,8 @@ Route::get('/manage-order',[CheckoutController::class,'manage_order']);
 Route::get('/view-order/{orderId}',[CheckoutController::class,'view_order']);
 
 
+//Send Mail
+Route::get('/send-mail',[MailController::class,'send_mail']);
+
+Route::get('/quen-mat-khau',[MailController::class,'quen_mat_khau']);
+Route::post('/recover-pass',[MailController::class,'recover_pass']);       
