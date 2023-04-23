@@ -43,6 +43,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/add',[CategoryProductController::class,'add'])->name('admin.category.add');// hiển thị form thêm danh mục
         Route::post('/create',[CategoryProductController::class,'create'])->name('admin.category.create');// thực hiện thêm danh mục
 
+
         Route::get('/edit/{category_product_id}',[CategoryProductController::class,'edit'])->name('admin.category.edit');// hiển thị form sửa danh mục
         Route::post('/update/{category_product_id}',[CategoryProductController::class,'update'])->name('admin.category.update');// thực hiện sửa danh mục
 
@@ -82,6 +83,7 @@ Route::prefix('admin')->group(function () {
     });
 
 });
+
 
 //Cart
 Route::post('/update-cart-quantity',[CartController::class,'update_cart_quantity']);
