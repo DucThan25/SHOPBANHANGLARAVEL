@@ -173,7 +173,7 @@
                             {{csrf_field()}}
                         <div class="search_box pull-right">
                             <input type="text" name="keywords_submit" placeholder="Tìm kiếm sản phẩm"/>
-                            <input type="submit" style="margin-top:0;color:#666" name="search_items" class="btn btn-primary btn-sm" value="Tìm kiếm">
+                            <input type="submit" style="margin-top:0;color:#ffffff" name="search_items" class="btn btn-primary btn-sm" value="Tìm kiếm">
                         </div>
                         </form>
                     </div>
