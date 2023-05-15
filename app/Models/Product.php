@@ -23,4 +23,13 @@ class Product extends Model
     ];
     protected $primaryKey = 'product_id';
     protected $table = 'tbl_product';
+
+    //sap xep theo danh muc
+    public function category(){
+        return $this->belongsTo('App\Models\Category','category_id');
+    }
+    //sap xep theo thuong hieu
+    public function brand(){
+        return $this->belongsTo('App\Models\Brand','brand_id');
+    }
 }

@@ -9,8 +9,8 @@
                                 <div class="single-products">
                                         <div class="productinfo text-center">
                                             <img src="{{URL::to('public/uploads/product/'.$product->product_image)}}" alt="" />
-                                            <h2>{{number_format($product->product_price).' '.'VNĐ'}}</h2>
-                                            <p>{{$product->product_name}}</p>
+                                            <h2>{{$product->product_name}}</h2>
+                                            <h5>{{number_format($product->product_price,0,',','.').' '.'VNĐ'}}</h5>
                                             <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</a>
                                         </div>
                                       

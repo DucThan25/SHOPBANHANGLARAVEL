@@ -32,11 +32,11 @@
 								<a href=""><img src="{{URL::to('public/uploads/product/'.$v_content->options->image)}}" width="50" alt="" /></a>
 							</td>
 							<td class="cart_description">
-								<h4><a href="">{{$v_content->name}}</a></h4>
-								<p>Web ID: 1089772</p>
+								<h5><a href="">{{$v_content->name}}</a></h5>
+								<h6>Web ID: 1089772</h6>
 							</td>
 							<td class="cart_price">
-								<p>{{number_format($v_content->price).' '.'vnđ'}}</p>
+								<h5>{{number_format($v_content->price,0,',','.').' '.'vnđ'}}</h5>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
@@ -53,7 +53,7 @@
 									
 									<?php
 									$subtotal = $v_content->price * $v_content->qty;
-									echo number_format($subtotal).' '.'vnđ';
+									echo number_format($subtotal,0,',','.').' '.'vnđ';
 									?>
 								</p>
 							</td>
@@ -76,10 +76,10 @@
 				<div class="col-sm-6">
 					<div class="total_area">
 						<ul>
-							<li>Tổng <span>{{Cart::total().' '.'vnđ'}}</span></li>
-							<li>Thuế <span>{{Cart::tax().' '.'vnđ'}}</span></li>
+							<li>Tổng <span>{{Cart::priceTotal(0,',','.').' '.'vnđ'}}</span></li>
+							<li>Thuế(5%) <span>{{Cart::tax(0,',','.').' '.'vnđ'}}</span></li>
 							<li>Phí vận chuyển <span>Free</span></li>
-							<li>Thành tiền <span>{{Cart::total().' '.'vnđ'}}</span></li>
+							<li>Thành tiền <span>{{Cart::total(0,',','.').' '.'vnđ'}}</span></li>
 						</ul>
 						{{-- 	<a class="btn btn-default update" href="">Update</a> --}}
 							  <?php
