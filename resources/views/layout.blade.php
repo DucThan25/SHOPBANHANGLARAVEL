@@ -13,6 +13,7 @@
     <link href="{{asset('frontend/css/animate.css')}}" rel="stylesheet">
     <link href="{{asset('frontend/css/main.css')}}" rel="stylesheet">
     <link href="{{asset('frontend/css/responsive.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -386,6 +387,9 @@
     <script src="{{asset('frontend/js/jquery.prettyPhoto.js')}}"></script>
     <script src="{{asset('frontend/js/main.js')}}"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js" async defer></script>
+
+    // sắp xếp theo...
     <script type="text/javascript">
         $(document).ready(function(){
             $('#sort').on('change',function(){
@@ -398,5 +402,28 @@
         });
 
     </script>
+    //lọc giá 
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            $( "#slider-range" ).slider({
+                orientation: "horizontal",
+                range: true,
+                min:{{$min_price_range}},
+                max:{{$max_price_range}},
+                values: [ {{$min_price}}, {{$max_price}} ],
+                step:50000,   
+                slide: function( event, ui ) {
+                    $( "#amount" ).val(ui.values[ 0 ]+"đ" + " - " + ui.values[ 1 ]+"đ" );
+                    $( "#start_price" ).val(  ui.values[ 0 ] );
+                    $( "#end_price" ).val(  ui.values[ 1 ] );
+                }
+            });
+
+            $( "#amount" ).val($( "#slider-range" ).slider( "values", 0 )+"đ" +
+            " - " + $( "#slider-range" ).slider( "values", 1 )+"đ" );
+        });
+    </script>
+    
 </body>
 </html>

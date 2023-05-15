@@ -111,6 +111,10 @@ class BrandProductController extends Controller
         $brand_product = Brand::where('brand_status','0')->orderby('brand_id','desc')->get(); 
 
         $brand_by_slug = Brand::where('brand_slug',$brand_slug)->get();
+        $min_price = Product::min('product_price');
+        $max_price = Product::max('product_price');
+        $min_price_range =$min_price - 50000;
+        $max_price_range =$max_price + 100000;
         
         foreach($brand_by_slug as $key => $brand){
             $brand_id = $brand->brand_id;
@@ -126,7 +130,16 @@ class BrandProductController extends Controller
             }elseif($sort_by == 'kytu_az'){
                 $brand_by_id = Product::with('brand')->where('brand_id',$brand_id)->orderBy('product_name','ASC')->paginate(6)->appends(request()->query());
             };
-        }else{
+        }
+        elseif(isset($_GET['start_price']) && $_GET['end_price']){
+            $min_price = $_GET['start_price'];
+            $max_price = $_GET['end_price'];
+            //CLICK LỌC
+            $brand_by_id = Product::with('category')
+            ->whereBetween('product_price',[$min_price,$max_price])->where('brand_id',$brand_id)
+            ->orderBy('product_price','ASC')->paginate(6);
+    }
+        else{
             $brand_by_id = Product::with('brand')->where('brand_id',$brand_id)->orderBy('product_id','DESC')->paginate(6);
            
         };
@@ -139,6 +152,10 @@ class BrandProductController extends Controller
             ->with('category',$cate_product)
             ->with('brand',$brand_product)
             ->with('brand_by_id',$brand_by_id)
-            ->with('brand_name',$brand_name);
+            ->with('brand_name',$brand_name)
+            ->with('min_price',$min_price)
+            ->with('max_price',$max_price)
+            ->with('max_price_range',$max_price_range)
+            ->with('min_price_range',$min_price_range);
     }
 }
