@@ -142,7 +142,7 @@ class CheckoutController extends Controller
     	
     	if($result){
     		Session::put('customer_id',$result->customer_id);
-    		return Redirect::to('/checkout');
+    		return Redirect::to('/trang-chu');
     	}else{
     		return Redirect::to('/login-checkout');
     	}
