@@ -109,22 +109,37 @@ class CategoryProductController extends Controller
         $brand_product = Brand::where('brand_status','0')->orderby('brand_id','desc')->get(); 
 
         $category_by_slug = Category::where('slug_category_product',$slug_category_product)->get();
-        
+        $min_price = Product::min('product_price');
+        $max_price = Product::max('product_price');
+        $min_price_range =$min_price - 50000;
+        $max_price_range =$max_price + 100000;
         foreach($category_by_slug as $key => $cate){
             $category_id = $cate->category_id;
         }
         if(isset($_GET['sort_by'])){
-            $sort_by = $_GET['sort_by'];
-            if($sort_by == 'giam_dan'){
-                $category_by_id = Product::with('category')->where('category_id',$category_id)->orderBy('product_price','DESC')->paginate(6)->appends(request()->query());
-            }elseif($sort_by == 'tang_dan'){
-                $category_by_id = Product::with('category')->where('category_id',$category_id)->orderBy('product_price','ASC')->paginate(6)->appends(request()->query());
-            }elseif($sort_by == 'kytu_za'){
-                $category_by_id = Product::with('category')->where('category_id',$category_id)->orderBy('product_name','DESC')->paginate(6)->appends(request()->query());
-            }elseif($sort_by == 'kytu_az'){
-                $category_by_id = Product::with('category')->where('category_id',$category_id)->orderBy('product_name','ASC')->paginate(6)->appends(request()->query());
-            };
-        }else{
+                $sort_by = $_GET['sort_by'];
+                if($sort_by == 'giam_dan'){
+                    $category_by_id = Product::with('category')
+                    ->where('category_id',$category_id)
+                    ->orderBy('product_price','DESC')
+                    ->paginate(6)->appends(request()->query());
+                }elseif($sort_by == 'tang_dan'){
+                    $category_by_id = Product::with('category')->where('category_id',$category_id)->orderBy('product_price','ASC')->paginate(6)->appends(request()->query());
+                }elseif($sort_by == 'kytu_za'){
+                    $category_by_id = Product::with('category')->where('category_id',$category_id)->orderBy('product_name','DESC')->paginate(6)->appends(request()->query());
+                }elseif($sort_by == 'kytu_az'){
+                    $category_by_id = Product::with('category')->where('category_id',$category_id)->orderBy('product_name','ASC')->paginate(6)->appends(request()->query());
+                };
+        }
+        elseif(isset($_GET['start_price']) && $_GET['end_price']){
+                $min_price = $_GET['start_price'];
+                $max_price = $_GET['end_price'];
+                //CLICK LỌC
+                $category_by_id = Product::with('category')
+                ->whereBetween('product_price',[$min_price,$max_price])->where('category_id',$category_id)
+                ->orderBy('product_price','ASC')->paginate(6);
+        }
+        else{
             $category_by_id = Product::with('category')->where('category_id',$category_id)->orderBy('product_id','DESC')->paginate(6);
            
         };
@@ -137,7 +152,12 @@ class CategoryProductController extends Controller
             ->with('category',$cate_product)
             ->with('brand',$brand_product)
             ->with('category_by_id',$category_by_id)
-            ->with('category_name',$category_name);
+            ->with('category_name',$category_name)
+            ->with('min_price',$min_price)
+            ->with('max_price',$max_price)
+            ->with('max_price_range',$max_price_range)
+            ->with('min_price_range',$min_price_range);
+            
     }
 
 }
