@@ -44,7 +44,7 @@
 				<form action="{{URL::to('/save-cart')}}" method="POST">
 					{{ csrf_field() }}
 					<span>
-						<h1>{{number_format($value->product_price).'VNĐ'}}</h1>
+						<h2>{{number_format($value->product_price,0,',','.').'VNĐ'}}</h2>
 					
 						<label>Số lượng:</label>
 						<input name="qty" type="number" min="1"  value="1" />
@@ -123,8 +123,9 @@
 									<div class="single-products">
 										<div class="productinfo text-center">
 											<img src="{{URL::to('public/uploads/product/'.$lienquan->product_image)}}" alt="" />
-											<h2>{{number_format($lienquan->product_price).' '.'VNĐ'}}</h2>
-											<p>{{$lienquan->product_name}}</p>
+											<h2>{{$lienquan->product_name}}</h2>
+											<h5>{{number_format($lienquan->product_price,0,',','.').' '.'VNĐ'}}</h5>
+											
 											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</a>
 										</div>
 										

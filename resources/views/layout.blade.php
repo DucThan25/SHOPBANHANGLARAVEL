@@ -149,7 +149,11 @@
                                 <li class="dropdown"><a href="#">Sản phẩm<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         @foreach($category as $key => $cate)
-                                            <li><a href="{{URL::to('/danh-muc-san-pham/'.$cate->slug_category_product)}}">{{$cate->category_name}}</a></li>
+                                            <li>
+                                                <a href="{{URL::to('/danh-muc-san-pham/'.$cate->slug_category_product)}}">
+                                                    {{$cate->category_name}}
+                                                </a>
+                                            </li>
                                         @endforeach
                                     </ul>
                                 </li> 
@@ -255,7 +259,11 @@
                            
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h4 class="panel-title"><a href="{{URL::to('/danh-muc-san-pham/'.$cate->slug_category_product)}}">{{$cate->category_name}}</a></h4>
+                                    <h4 class="panel-title">
+                                        <a href="{{URL::to('/danh-muc-san-pham/'.$cate->slug_category_product)}}">
+                                            {{$cate->category_name}}
+                                        </a>
+                                    </h4>
                                 </div>
                             </div>
                         @endforeach
@@ -266,7 +274,12 @@
                             <div class="brands-name">
                                 <ul class="nav nav-pills nav-stacked">
                                     @foreach($brand as $key => $brand)
-                                    <li><a href="{{URL::to('/thuong-hieu-san-pham/'.$brand->brand_slug)}}"> <span class="pull-right">(50)</span>{{$brand->brand_name}}</a></li>
+                                    <li>
+                                        <a href="{{URL::to('/thuong-hieu-san-pham/'.$brand->brand_slug)}}"> 
+                                            <span class="pull-right">(50)</span>
+                                            {{$brand->brand_name}}
+                                        </a>
+                                    </li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -372,5 +385,18 @@
     <script src="{{asset('frontend/js/price-range.js')}}"></script>
     <script src="{{asset('frontend/js/jquery.prettyPhoto.js')}}"></script>
     <script src="{{asset('frontend/js/main.js')}}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#sort').on('change',function(){
+                var url = $(this).val();
+                if(url){
+                    window.location = url;
+                }
+                return false;
+            });
+        });
+
+    </script>
 </body>
 </html>

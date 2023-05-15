@@ -41,7 +41,7 @@
 								<p>Web ID: 1089772</p>
 							</td>
 							<td class="cart_price">
-								<p>{{number_format($v_content->price).' '.'vnđ'}}</p>
+								<p>{{number_format($v_content->price,0,',','.').' '.'vnđ'}}</p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
@@ -58,7 +58,7 @@
 									
 									<?php
 									$subtotal = $v_content->price * $v_content->qty;
-									echo number_format($subtotal).' '.'vnđ';
+									echo number_format($subtotal,0,',','.').' '.'vnđ';
 									?>
 								</p>
 							</td>
