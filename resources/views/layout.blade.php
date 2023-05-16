@@ -34,7 +34,7 @@
                     <div class="col-sm-6">
                         <div class="contactinfo">
                             <ul class="nav nav-pills">
-                                <li><a href="#"><i class="fa fa-phone"></i> +84 86 7033 918 00000000</a></li>
+                                <li><a href="#"><i class="fa fa-phone"></i> +84 86 7033 918 </a></li>
                                 <li><a href="#"><i class="fa fa-envelope"></i> nguyenducthan2507@gmail.com</a></li>
                             </ul>
                         </div>
