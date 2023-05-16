@@ -110,4 +110,6 @@ Route::get('/view-order/{orderId}',[CheckoutController::class,'view_order']);
 //Send Mail
 Route::get('/send-mail',[MailController::class,'send_mail']);
 Route::get('/quen-mat-khau',[MailController::class,'quen_mat_khau']);
-Route::post('/recover-pass',[MailController::class,'recover_pass']);       
+Route::get('/update-new-pass',[MailController::class,'update_new_pass']);
+Route::post('/recover-pass',[MailController::class,'recover_pass']);
+Route::post('/reset-new-pass',[MailController::class,'reset_new_pass']);       
