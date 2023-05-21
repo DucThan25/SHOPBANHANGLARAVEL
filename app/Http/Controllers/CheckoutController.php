@@ -35,6 +35,7 @@ class CheckoutController extends Controller
         return view('admin_layout')->with('admin.view_order', $manager_order_by_id);
         
     }
+    // yêu cầu đăng nhập khi click thanh toán nếu như chưa đăng nhập
     public function login_checkout(){
 
     	$cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
@@ -42,6 +43,8 @@ class CheckoutController extends Controller
 
     	return view('pages.checkout.login_checkout')->with('category',$cate_product)->with('brand',$brand_product);
     }
+
+    // đăng ký tài khoản
     public function add_customer(Request $request){
 
     	$data = array();
@@ -58,12 +61,14 @@ class CheckoutController extends Controller
 
 
     }
+    // insert tbl_shipping
     public function checkout(){
     	$cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get(); 
 
     	return view('pages.checkout.show_checkout')->with('category',$cate_product)->with('brand',$brand_product);
     }
+    //lưu thong tin tbl_shipping
     public function save_checkout_customer(Request $request){
     	$data = array();
     	$data['shipping_name'] = $request->shipping_name;
@@ -117,6 +122,7 @@ class CheckoutController extends Controller
             echo 'Thanh toán thẻ ATM';
 
         }elseif($data['payment_method']==2){
+            //hủy tất cả sản phẩm trong giỏ hàng
             Cart::destroy();
 
             $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
