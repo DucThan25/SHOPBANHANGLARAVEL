@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 session_start();
 class BrandProductController extends Controller
 {
@@ -46,7 +47,7 @@ class BrandProductController extends Controller
         $data = $request ->all();
         $brand = new Brand();
         $brand->brand_name = $data['brand_product_name'];
-        $brand->brand_slug = $data['brand_slug'];
+        $brand->brand_slug = Str::slug($request->input('brand_product_name'));
         $brand->brand_desc = $data['brand_product_desc'];
         $brand->brand_status = $data['brand_product_status'];
         $brand->save();
@@ -90,7 +91,7 @@ class BrandProductController extends Controller
         $data = $request ->all();
         $brand = Brand::find($brand_product_id);
         $brand->brand_name = $data['brand_product_name'];
-        $brand->brand_slug = $data['brand_slug'];
+        $brand->brand_slug = Str::slug($request->input('brand_product_name'));
         $brand->brand_desc = $data['brand_product_desc'];
         $brand->save();
         Session::put('message','Cập nhật thương hiệu sản phẩm thành công');
