@@ -10,6 +10,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 session_start();
 
 class CategoryProductController extends Controller
@@ -50,7 +51,8 @@ class CategoryProductController extends Controller
         $data = $request ->all();
         $category = new Category();
         $category->category_name = $data['category_product_name'];
-        $category->slug_category_product = $data['slug_category_product'];
+        $category->slug_category_product = Str::slug($request->input('category_product_name'));
+        // $category->slug_category_product = $data['slug_category_product'];
         $category->category_desc = $data['category_product_desc'];
         $category->category_status = $data['category_product_status'];
         $category->save();
@@ -90,7 +92,8 @@ class CategoryProductController extends Controller
         $data = $request ->all();
         $category = Category::find($category_product_id);
         $category->category_name = $data['category_product_name'];
-        $category->slug_category_product = $data['slug_category_product'];
+        // $category->slug_category_product = $data['slug_category_product'];
+        $category->slug_category_product = Str::slug($request->input('category_product_name'));
         $category->category_desc = $data['category_product_desc'];
         $category->save();
         Session::put('message','Cập nhật danh mục sản phẩm thành công');
