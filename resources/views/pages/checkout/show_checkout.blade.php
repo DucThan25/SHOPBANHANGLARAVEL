@@ -10,8 +10,8 @@
 				</ol>
 			</div>
 
-			<div class="register-req">
-				<p>Làm ơn đăng ký hoặc đăng nhập để thanh toán giỏ hàng và xem lại lịch sử mua hàng</p>
+			<div class="col-sm-7 clearfix " style="display: flex">
+				<p style="color: red ; font-size:20px">*</p>Lưu ý đăng ký hoặc đăng nhập để thanh toán giỏ hàng và xem lại lịch sử mua hàng
 			</div><!--/register-req-->
 
 			<div class="shopper-informations">
@@ -19,7 +19,7 @@
 					
 					<div class="col-sm-12 clearfix">
 						<div class="bill-to">
-							<p>Điền thông tin gửi hàng</p>
+							<h3>Điền thông tin người nhận hàng</h3>
 							<div class="form-one">
 								<form action="{{URL::to('/save-checkout-customer')}}" method="POST">
 									{{csrf_field()}}
@@ -38,11 +38,11 @@
 				</div>
 			</div>
 			<div class="review-payment">
-				<h2>Xem lại giỏ hàng</h2>
+				<a href="{{URL::to('/show-cart')}}"><i class="fa fa-shopping-cart"></i> Xem lại giỏ hàng</a>
 			</div>
 
 			
-			<div class="payment-options">
+			{{-- <div class="payment-options">
 					<span>
 						<label><input type="checkbox"> Direct Bank Transfer</label>
 					</span>
@@ -52,7 +52,7 @@
 					<span>
 						<label><input type="checkbox"> Paypal</label>
 					</span>
-				</div>
+				</div> --}}
 		</div>
 	</section> <!--/#cart_items-->
 

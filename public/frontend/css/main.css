@@ -1552,6 +1552,7 @@ h2.title {
   position: absolute;
   top: 11px;
   left:48px;
+  margin-left: 30px;
 
 }
 
@@ -1560,6 +1561,7 @@ h2.title {
 }
 
 #cart_items .cart_info {
+  width: 72%;
   border: 1px solid #E6E4DF;
   margin-bottom: 50px
 }
@@ -1622,7 +1624,7 @@ h2.title {
 
 #cart_items .cart_info .cart_total_price {
   color: #9370DB;
-  font-size: 24px;
+  font-size: 21px;
 }
 
 .cart_product {
@@ -1655,7 +1657,7 @@ h2.title {
 
 .cart_delete  {
   display: block;
-  margin-right: -12px;
+  /* margin-right: -12px; */
   overflow: hidden;
 }
 
@@ -1668,7 +1670,7 @@ h2.title {
 }
 
 .cart_delete a:hover {
-  background:#9370DB
+  background:#f61212
 }
 
 
@@ -1785,7 +1787,7 @@ h2.title {
 }
 
 .check_out {
-  margin-left: 20px
+  margin-left: 40px
 }
 
 
