@@ -38,6 +38,22 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Roboto', sans-serif;
 }
 
+#header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  background-color: #fff;
+}
+
+#slider {
+  padding-top: 220px;
+}
+
+.row_1 {
+  padding-bottom: 10px !important;
+  padding-top: 10px !important;
+}
 .btn:hover, 
 .btn:focus{
   outline: none;
@@ -221,8 +237,12 @@ a#scrollUp i{
 
 
 .header-bottom {
-  padding-bottom: 30px;
-  padding-top: 30px;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  box-shadow: 3px 30px 30px -25px #000;
+}
+.dropdown_hv:hover{
+  color: red;
 }
 
 .navbar-collapse.collapse{
@@ -2522,4 +2542,21 @@ h2.title {
   color: #9370DB;
 }
 
+.box {
+  height: 50px;
+  position: fixed;
+  bottom: 50%;
+  right:15px;
+  z-index: 5;
+}
+ .fa_icon{
+  width: 15px;
+  height: 15px;
+  padding: 15px 25px 30px 15px;
+  font-size: 20px;
+  border-radius: 10;
+  margin-top: 10px;
+  color: red;
+  background: rgb(9, 255, 0);
+ }
 
