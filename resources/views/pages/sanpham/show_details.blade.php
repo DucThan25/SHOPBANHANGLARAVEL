@@ -65,7 +65,7 @@
 		<div class="col-sm-12">
 			<ul class="nav nav-tabs">
 				<li class="active"><a href="#details" data-toggle="tab">Mô tả</a></li>
-				<li><a href="#companyprofile" data-toggle="tab">Chi tiết sản phẩm</a></li>
+				<li><a href="#companyprofile" data-toggle="tab">Hướng dẫn sử dụng</a></li>
 			
 				<li ><a href="#reviews" data-toggle="tab">Đánh giá</a></li>
 			</ul>
