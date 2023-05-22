@@ -158,6 +158,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{asset('backend/js/scripts.js')}}"></script>
 <script src="{{asset('backend/js/jquery.slimscroll.js')}}"></script>
 <script src="{{asset('backend/js/jquery.nicescroll.js')}}"></script>
+<script src="{{asset('backend/ckeditor/ckeditor.js')}}"></script>
+<script>
+    CKEDITOR.replace('ckeditor_add_brand');
+    CKEDITOR.replace('ckeditor_edit_brand');
+    CKEDITOR.replace('ckeditor_add_category');
+    CKEDITOR.replace('ckeditor_edit_category');
+    CKEDITOR.replace('ckeditor_describe_add');
+    CKEDITOR.replace('ckeditor_content_add');
+    CKEDITOR.replace('ckeditor_describe_edit');
+    CKEDITOR.replace('ckeditor_content_edit');
+</script>
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
 <script src="{{asset('backend/js/jquery.scrollTo.js')}}"></script>
 <!-- morris JavaScript -->	
