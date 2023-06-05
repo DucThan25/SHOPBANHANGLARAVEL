@@ -13,6 +13,7 @@
     <link href="{{asset('frontend/css/animate.css')}}" rel="stylesheet">
     <link href="{{asset('frontend/css/main.css')}}" rel="stylesheet">
     <link href="{{asset('frontend/css/responsive.css')}}" rel="stylesheet">
+    <link href="{{asset('frontend/css/sweetalert.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
@@ -391,6 +392,7 @@
     <script src="{{asset('frontend/js/price-range.js')}}"></script>
     <script src="{{asset('frontend/js/jquery.prettyPhoto.js')}}"></script>
     <script src="{{asset('frontend/js/main.js')}}"></script>
+    <script src="{{asset('frontend/js/sweetalert.min.js')}}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js" async defer></script>
     <script type="text/javascript">
@@ -405,6 +407,15 @@
         });
 
     </script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.add-to-cart').click(function(){
+                swal("Đã thêm vào giỏ hàng", ".", "success");
+            });
+        });
+    </script>
+
     <script type="text/javascript">
 
         $(document).ready(function(){
