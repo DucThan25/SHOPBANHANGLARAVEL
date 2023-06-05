@@ -119,17 +119,32 @@
 							<div class="col-sm-4">
 								<div class="product-image-wrapper">
 									{{-- click hiển thị thông tin chi tiết --}}
-									<a href="{{URL::to('/chi-tiet-san-pham/'.$lienquan->product_slug)}}">
+									
 									<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="{{URL::to('public/uploads/product/'.$lienquan->product_image)}}" alt="" />
-											<h2>{{$lienquan->product_name}}</h2>
-											<h5>{{number_format($lienquan->product_price,0,',','.').' '.'VNĐ'}}</h5>
-											
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</a>
+											<form action="{{URL::to('/save-cart')}}" method="POST">
+												{{ csrf_field() }}
+												<input type="hidden" name="productid_hidden" class="product_id_{{$lienquan->product_id}}" value="{{$lienquan->product_id}}">
+												<input type="hidden" class="product_name_{{$lienquan->product_id}}" value="{{$lienquan->product_name}}">
+												<input type="hidden" class="product_image_{{$lienquan->product_id}}" value="{{$lienquan->product_image}}">
+												<input type="hidden" class="product_price_{{$lienquan->product_id}}" value="{{$lienquan->product_price}}">
+												<input type="hidden" name="qty" class="product_qty_{{$lienquan->product_id}}" value="1"> 
+												
+												<a href="{{URL::to('/chi-tiet-san-pham/'.$lienquan->product_slug)}}">
+													<img src="{{URL::to('public/uploads/product/'.$lienquan->product_image)}}" alt="" />
+													<h2>{{$lienquan->product_name}}</h2>
+													<h5>{{number_format($lienquan->product_price,0,',','.').' '.'VNĐ'}}</h5>
+												</a>
+					
+												<button type="submit"  class="btn btn-default add-to-cart" name="add-to-cart" data-id_product="{{$lienquan->product_id}}">
+													<i class="fa fa-shopping-cart"></i>
+													Thêm giỏ hàng
+												</button>
+											</form>
 										</div>
 										
 									</div>
+									
 								</div>
 							</div>
 					@endforeach		
