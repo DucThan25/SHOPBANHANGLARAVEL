@@ -96,7 +96,10 @@ Route::get('/delete-to-cart/{rowId}',[CartController::class,'delete_to_cart']);
 Route::get('/login-checkout',[CheckoutController::class,'login_checkout']);
 Route::get('/logout-checkout',[CheckoutController::class,'logout_checkout']);
 Route::post('/add-customer',[CheckoutController::class,'add_customer']);
+//thanh toán tiền mặt
 Route::post('/order-place',[CheckoutController::class,'order_place']);
+//thanh toán momo
+Route::post('/momo-payment',[CheckoutController::class,'momo_payment']);
 Route::post('/login-customer',[CheckoutController::class,'login_customer']);
 Route::get('/checkout',[CheckoutController::class,'checkout']);
 Route::get('/payment',[CheckoutController::class,'payment']);

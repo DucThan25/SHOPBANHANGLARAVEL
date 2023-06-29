@@ -70,22 +70,41 @@
 					</tbody>
 				</table>
 			</div>
+			<div class="col-sm-6">
+				<div class="total_area">
+					<ul>
+						<li>Tổng <span>{{Cart::priceTotal(0,',','.').' '.'vnđ'}}</span></li>
+						<li>Thuế <span>{{Cart::tax(0,',','.').' '.'vnđ'}}</span></li>
+						<li>Giảm giá <span>{{Cart::discount(0,',','.').' '.'vnđ'}}</span></li>
+						<li>Phí vận chuyển <span>Free</span></li>
+						<li>Thành tiền <span>{{Cart::total(0,',','.').' '.'vnđ'}}</span></li>
+						<input type="hidden" value="{{Cart::total(0,',','.')}}" name="total" class="form-control">
+					</ul>
+				</div>
+			</div>
+			<div class="col-sm-12">
 			<h4 style="margin:40px 0;font-size: 20px;">Chọn hình thức thanh toán</h4>
 			<form method="POST" action="{{URL::to('/order-place')}}">
 				{{ csrf_field() }}
-			<div class="payment-options">
-					<span>
-						<label><input name="payment_option" value="1" type="checkbox"> Trả bằng thẻ ATM</label>
-					</span>
-					<span>
-						<label><input name="payment_option" value="2" type="checkbox"> Nhận tiền mặt</label>
-					</span>
-					<span>
-						<label><input name="payment_option" value="3" type="checkbox"> Thanh toán thẻ ghi nợ</label>
-					</span>
-					<input type="submit" value="Đặt hàng" name="send_order_place" class="btn btn-primary btn-sm">
-			</div>
+				<div class="payment-options">
+						<span>
+							<label><input name="payment_option" value="1" type="checkbox"> Thanh toán Momo</label>
+						</span>
+						<span>
+							<label><input name="payment_option" value="2" type="checkbox"> Nhận tiền mặt</label>
+						</span>
+						<span>
+							<label><input name="payment_option" value="3" type="checkbox"> Thanh toán thẻ ghi nợ</label>
+						</span>
+						<input type="submit" value="Đặt hàng" name="send_order_place" class="btn btn-primary btn-sm">
+				</div>
 			</form>
+			<form action="{{URL::to('/momo-payment')}}" method="POST">
+				{{ csrf_field() }}
+				<input type="hidden" name="total_momo"  value="{{Cart::total(0,',','')}}">
+				<input type="submit" value="Thanh toán momo" name="payUrl" class="btn btn-primary btn-sm">
+			</form>
+			</div>
 		</div>
 	</section> <!--/#cart_items-->
 
