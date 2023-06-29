@@ -74,13 +74,15 @@
 			<div class="row">
 			
 				<div class="col-sm-6">
-					<div class="total_area">
-						<ul>
+					{{-- <div class="total_area"> --}}
+						{{-- <ul>
 							<li>Tổng <span>{{Cart::priceTotal(0,',','.').' '.'vnđ'}}</span></li>
-							<li>Thuế(5%) <span>{{Cart::tax(0,',','.').' '.'vnđ'}}</span></li>
+							<li>Thuế <span>{{Cart::tax(0,',','.').' '.'vnđ'}}</span></li>
+							<li>Giảm giá <span>{{Cart::discount(0,',','.').' '.'vnđ'}}</span></li>
 							<li>Phí vận chuyển <span>Free</span></li>
 							<li>Thành tiền <span>{{Cart::total(0,',','.').' '.'vnđ'}}</span></li>
-						</ul>
+							<input type="hidden" value="{{Cart::total(0,',','.')}}" name="total" class="form-control">
+						</ul> --}}
 						{{-- 	<a class="btn btn-default update" href="">Update</a> --}}
 							  <?php
                                    $customer_id = Session::get('customer_id');
@@ -99,7 +101,7 @@
                                 
 							
 
-					</div>
+					{{-- </div> --}}
 				</div>
 			</div>
 		</div>

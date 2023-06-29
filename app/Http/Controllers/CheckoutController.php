@@ -100,7 +100,7 @@ class CheckoutController extends Controller
      
         $data = array();
         $data['payment_method'] = $request->payment_option;
-        $data['payment_status'] = 'Đang chờ xử lý';
+        $data['payment_status'] = 'Thanh toán tiền mặt';
         $payment_id = DB::table('tbl_payment')->insertGetId($data);
 
         //insert order
@@ -124,7 +124,8 @@ class CheckoutController extends Controller
         }
         if($data['payment_method']==1){
 
-            echo 'Thanh toán thẻ ATM';
+            //echo 'Thanh toán thẻ ATM';
+            return Redirect::to('/momo-payment');
 
         }elseif($data['payment_method']==2){
             //hủy tất cả sản phẩm trong giỏ hàng
@@ -140,6 +141,97 @@ class CheckoutController extends Controller
         }
         
         //return Redirect::to('/payment');
+    }
+    public function execPostRequest($url, $data)
+    {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Content-Type: application/json',
+                'Content-Length: ' . strlen($data))
+        );
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+        //execute post
+        $result = curl_exec($ch);
+        //close connection
+        curl_close($ch);
+        return $result;
+    }
+
+    public function momo_payment(Request $request){
+        
+
+        $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
+
+        $partnerCode = 'MOMOBKUN20180529';
+        $accessKey = 'klm05TvNBzhg7h7j';
+        $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
+        $orderInfo = "Thanh toán qua MoMo";
+        $amount = $_POST['total_momo'];
+        //dd($amount);
+        $orderId = time() ."";
+        $redirectUrl = "https://127.0.0.1:8000/";
+        $ipnUrl = "https://127.0.0.1:8000/";
+        $extraData = "";
+
+
+        $requestId = time() . "";
+        $requestType = "payWithATM";
+        // $extraData = ($_POST["extraData"] ? $_POST["extraData"] : "");
+        //before sign HMAC SHA256 signature
+        $rawHash = "accessKey=" . $accessKey . "&amount=" . $amount . "&extraData=" . $extraData . "&ipnUrl=" . $ipnUrl . "&orderId=" . $orderId . "&orderInfo=" . $orderInfo . "&partnerCode=" . $partnerCode . "&redirectUrl=" . $redirectUrl . "&requestId=" . $requestId . "&requestType=" . $requestType;
+        $signature = hash_hmac("sha256", $rawHash, $secretKey);
+        // dd($signature);
+        $data = array('partnerCode' => $partnerCode,
+            'partnerName' => "Test",
+            "storeId" => "MomoTestStore",
+            'requestId' => $requestId,
+            'amount' => $amount,
+            'orderId' => $orderId,
+            'orderInfo' => $orderInfo,
+            'redirectUrl' => $redirectUrl,
+            'ipnUrl' => $ipnUrl,
+            'lang' => 'vi',
+            'extraData' => $extraData,
+            'requestType' => $requestType,
+            'signature' => $signature);
+        $result = $this->execPostRequest($endpoint, json_encode($data));
+        //dd($result);
+        $jsonResult = json_decode($result, true);  // decode json
+        Cart::destroy();
+        //Just a example, please check more in there
+        return Redirect::to($jsonResult['payUrl']);
+
+        // $data = array();
+        // $data['payment_method'] = $request->payment_option;
+        // $data['payment_status'] = 'Thanh toán momo';
+        // $payment_id = DB::table('tbl_payment')->insertGetId($data);
+
+        // //insert order
+        // $order_data = array();
+        // $order_data['customer_id'] = Session::get('customer_id');
+        // $order_data['shipping_id'] = Session::get('shipping_id');
+        // $order_data['payment_id'] = $payment_id;
+        // $order_data['order_total'] = Cart::total();
+        // $order_data['order_status'] = 'Đang chờ xử lý';
+        // $order_id = DB::table('tbl_order')->insertGetId($order_data);
+
+        // //insert order_details
+        // $content = Cart::content();
+        // foreach($content as $v_content){
+        //     $order_d_data['order_id'] = $order_id;
+        //     $order_d_data['product_id'] = $v_content->id;
+        //     $order_d_data['product_name'] = $v_content->name;
+        //     $order_d_data['product_price'] = $v_content->price;
+        //     $order_d_data['product_sales_quantity'] = $v_content->qty;
+        //     DB::table('tbl_order_details')->insert($order_d_data);
+        // }
+
+        
+        
     }
     public function logout_checkout(){
     	Session::flush();

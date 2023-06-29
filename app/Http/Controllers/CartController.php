@@ -26,7 +26,8 @@ class CartController extends Controller
         $data['weight'] = $product_info->product_price;
         $data['options']['image'] = $product_info->product_image;
         Cart::add($data);
-        Cart::setGlobalTax(5); // thuế 5%
+        Cart::setGlobalTax(2); // thuế 2%
+        Cart::setGlobalDiscount(10); // giảm giá
         // Cart::destroy();
         return Redirect::to('/show-cart');
        
