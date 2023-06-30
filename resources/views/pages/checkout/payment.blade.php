@@ -87,9 +87,9 @@
 			<form method="POST" action="{{URL::to('/order-place')}}">
 				{{ csrf_field() }}
 				<div class="payment-options">
-						<span>
+						{{-- <span>
 							<label><input name="payment_option" value="1" type="checkbox"> Thanh toán Momo</label>
-						</span>
+						</span> --}}
 						<span>
 							<label><input name="payment_option" value="2" type="checkbox"> Nhận tiền mặt</label>
 						</span>
