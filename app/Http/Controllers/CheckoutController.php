@@ -173,8 +173,8 @@ class CheckoutController extends Controller
         $amount = $_POST['total_momo'];
         //dd($amount);
         $orderId = time() ."";
-        $redirectUrl = "https://127.0.0.1:8000/";
-        $ipnUrl = "https://127.0.0.1:8000/";
+        $redirectUrl = "http://127.0.0.1:8000/show-cart";
+        $ipnUrl = "http://127.0.0.1:8000/show-cart";
         $extraData = "";
 
 
