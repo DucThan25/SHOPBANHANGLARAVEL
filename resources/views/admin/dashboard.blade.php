@@ -3,7 +3,11 @@
 <h3>Xin chào 
     <span class="username">
         <?php
-            echo 'Admin.';
+            $name = Session::get('admin_name');
+            if($name){
+                echo $name;
+                
+            }
         ?>
     </span> .
 </h3>
